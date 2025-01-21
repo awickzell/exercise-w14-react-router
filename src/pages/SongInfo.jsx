@@ -1,16 +1,22 @@
-// TODO: Import necessary modules and data
+import { useParams } from 'react-router-dom';
+import songsData from "../data/songs.json";
 
-// TODO: Destrcutrue props to receive information coming in from the parent comp
 function SongInfo() {
-  // TODO: Fetch the song title from the URL and find the corresponding song data and add a conditional to display some simple html if there is no song :)
+  const { songRank } = useParams();
+  const song = songsData.songs.find(song => song.rank === parseInt(songRank));
+
+  if (!song) {
+    return <div>Song not found!</div>;
+  }
 
   return (
-    <>
-      <div>
-        <h2>Song Information</h2>
-        {/* TODO: Display song details or a "Song not found!" message */}
-      </div>
-    </>
+    <div className="song-info">
+      <h2>{song.title}</h2>
+      <p><strong>Artist:</strong> {song.artist}</p>
+      <p><strong>Album:</strong> {song.album}</p>
+      <p><strong>Year:</strong> {song.year}</p>
+      <p><strong>Rank:</strong> {song.rank}</p>
+    </div>
   );
 }
 

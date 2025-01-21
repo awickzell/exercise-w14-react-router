@@ -1,13 +1,21 @@
-// TODO: Import necessary modules and data
+import { Link } from "react-router-dom";
+import songsData from "../data/songs.json";
+
 function Home() {
-  // TODO: Implement logic to display the list of songs
   return (
-    <>
-      <div>
-        <h1>Rolling Stones 500 Greatest Songs of all Time</h1>
-        {/* TODO: Display the list of songs with links */}
-      </div>
-    </>
+    <div>
+      <h1 className="heading">Rolling Stones 500 Greatest Songs of All Time</h1>
+      <ul>
+        {songsData.songs.map((song) => (
+          <li key={song.rank}>
+            <Link to={`/song/${song.rank}`}>
+              <span className="song-title">{song.title}</span>
+              <span className="artist-name">{song.artist}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
